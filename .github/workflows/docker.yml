@@ -17,6 +17,12 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v3
 
+      - name: 🌐 Clone Original Linklog Repo
+        run: |
+          git clone --depth=1 https://github.com/tiagorangel1/linklog.git original
+          cp -r original/* ./
+          cp -r original/.* ./ || true  # copy hidden files like .gitignore if needed
+
       - name: 🔐 Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
